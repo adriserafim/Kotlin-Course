@@ -57,4 +57,48 @@ fun main() {
 
     val changingTypeP2 = changingTypeP1.toString()
     println(changingTypeP2::class)
+
+    val long3: Long = 1_200 // Para ficar mais fácil de se ser o número que esta no long você pode colocar um underline para separar a casa do milhar da demais
+
+    // Operações matemáticas (+ - / * !)
+
+    val conta1 = 23 // Não da para deixar uma variável sem o seu valor inicial
+    val conta2 = 64
+    val conta3 = "OK"
+    val conta4 = "123"
+    var soma = 0
+    var subtracao = 0
+    var divisao = 0
+    var mutiplicacao = 0
+    var soma2 = ""
+    soma = conta1 + conta2 // Aqui podermos fazer contas como soma
+    println(soma)
+    subtracao = conta1 - conta2 // Subtração
+    println(subtracao)
+    divisao = conta1 / conta2 // Divisão
+    println(divisao)
+    mutiplicacao = conta1 * conta2 // Mutiplicação
+    println(mutiplicacao)
+    soma2 = conta3 + conta4 // Tambem podemos somar textos
+    println(soma2)
+    val booleana = false // A outra operação que temos é a booleana
+    println(boolean)
+
+    // Codificações de texto
+
+    val nome : String = "Adriano" // String é uma sequência de chars
+    val nomedomeio : Char = 'S' // Para utilizar o char você tem que utilizar '' em ves de "" ele ocupa menos espaço do que a string, ocupando somente 16 bits
+    val nomeespaco = '\t' // Utilizando o chars podemos fazer cofigurações especificas como utilizar o espaço do TAB
+    val mudadelinha = '\n' // Ou bular a linha
+    val nome2 = "Erivan"
+    println(nome+nomeespaco+nomedomeio+mudadelinha+nome2+nomeespaco+nomedomeio)
+
+    // Operando objetos
+
+    val Nnome = nome.length  // Isso faz com que retorne a quantidade de caracteres tem a variável
+    println(Nnome) // Quando colocamos .funsão em um objeto como uma String nos estamos fazerndo uma funsão com ela
+    val Minnome = nome.lowercase() // Isso faz com que retorne a variável com todas as letras minúsculas
+    val Maxnome = nome.uppercase() // Isso faz com que retorne a variável com todas as letras maiúsculas
+    println(Minnome) // Apesar disso também ser uma funsão ela e uma funsão que alterar propriedade
+    println(Maxnome) // Diferente da funsão comum que não altera uma variável so utiliza a variálvel para algo
 }
