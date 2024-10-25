@@ -61,6 +61,9 @@ fun main() {
 
     val boolean: Boolean = true // O tipo Boolean armazena informação como verdadeiro (true) ou falso (false)
 
+    var variavelnula : String? = null // Para criar variáveis nulas no Kotlin você tem que indentificar que essa
+    // variável pode amarzenar o valor null que é nulo
+
     val changingTypeP1 = 45
     println(changingTypeP1::class)
 
@@ -136,6 +139,9 @@ fun main() {
     // a .replaceIndent que vai trocar esse espaço vazio por o caracter que eu escolher
     println(itens)
 
+    var contagemnulo = variavelnula?.length // As variáveis com o valor nulo tem problemas em fazer operações
+    println(contagemnulo) // Outro jeito de fazer uma operação com uma variavel nula é utilizando uma função
+
     // Funsão lógica
 
     if (product.length > 5){ // if é a funsão lógica mais básica ele apesar faz uma operação se o resultado for True
@@ -145,4 +151,47 @@ fun main() {
         println("Produto não cadastrado")
     }
 
+    // As funções tem as esprecões de:
+    //  + soma; - subtração; * mutiplicação; / divisão; = igual em espaço armazenado ; == igualdade valor armazenado;
+    //  != diferente,
+
+    if (product == "iPhone" && conta1 == 31 ){ // Nas funções nos temos as mutcondições feitas pelo && E ou || OU
+        println("sucesso")
+    }
+    else{
+        println("falha")
+    }
+    // E
+    // True | True    = True
+    // True | False   = False
+    // False | True   = False
+    // False | False  = False
+
+    if (product == "iPhone" || conta1 == 31 ){
+        println("sucesso")
+    }
+    else{
+        println("falha")
+    }
+    // OU
+    // True | True    = True
+    // True | False   = True
+    // False | True   = True
+    // False | False  = False
+
+    var product2 = "iPhone"
+    println(product == product2) // Codemos fazer comparações de strings
+    println(product.equals(product2)) // Fazendo assim temos o mesmo resutado porem codificamente deixa mais díficil de
+    // se ver
+
+    if (variavelnula != null){ // Assim que se posibilita fazer uma operação com variáveis nulas
+        val contagemnulo2 = variavelnula.length
+        println(contagemnulo2)
+    }
+    val contagemnulo3 = if (variavelnula != null) variavelnula.length else 0 // Esse é o outro jeito de fazer um if de
+    println(contagemnulo3) // forma mais inxota codificamente falando, porem na minha opnião fica horrivel e dificil de
+    // se ler
+    val contagemnulo4 = variavelnula?.length ?: 0 // Esse é um outro jeito de se fazer uma funão if, fazendo com que
+    println(contagemnulo4) //  o else seja ?: e nessa forma ele é chamado de operação Elvis ...
+    // Sim é baseado no Elvis Presley é para ? ser o topete e os : ser os olhos ... ?:
 }
