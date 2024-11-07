@@ -1,3 +1,10 @@
+import java.lang.ArithmeticException
+import java.lang.IllegalArgumentException
+
+fun getMenu(): menuDiscount { // Aqui é onde você informa qual que é o coportamento que sera utilizado no momento
+    return BK()
+}
+
 fun main(args: Array<String>) {
     // Ctrl + / Coloca as linha em comentario
     //Criação de Array ou vetor como gosto de falar
@@ -141,11 +148,18 @@ fun main(args: Array<String>) {
     println(r)
      */
 
+    /*
     val obj:Any = getObject(2)
     if (obj is Int) println(obj) // Com o is checamos se a condição é verdade
     else println(obj::class) // Com isso nos conseguimos ver o tipo da váriavel
     val obj2:Any = getObject(2)
+     */
 
+    divide2(10, 0)
+    showView()
+    val Usuario = customer("Adriano")
+    Usuario.MenuDiscount = getMenu()
+    Usuario.appScreen()
 }
 
 fun sum(x:Int, y: Int): Int {
@@ -169,5 +183,70 @@ fun getObject(value: Int): Any { // Todo tipo de váriavel é do tipo Any, com i
         2 -> "Aula"
         3 -> true
         else -> 1.0
+    }
+}
+
+fun divide2(x:Int, y: Int) { // Podemos tentar fazer o controle de erros
+    try { // O ploco try faz com que o função tente fazer a operação
+        println(x / y)
+    }
+    catch (e: ArithmeticException) { // Com o catch podemos colocar o erro que é possivel calsar e dar uma solução a ele
+        println("Não é possivel fazer uma divisão por ZERO") // Como por exemplo o erro de fazer uma divisão por zero
+    // que gera um erro ArithmeticException. Esse metodo só consegue resolver os erros que são TimeError, que são tipos
+    // de erro que so dão errado quando os programa esta em execução
+    } catch (e: Exception) { // Podemos ser genericos e colocar o erro como Exception assim ele vai englobar 90% dos
+        // erro de tipo TimeError, mas claramente sendo genericos nos não estamos resolvendo o problema só o cotornando
+        println("Erro não esperado")
+    }
+}
+fun showView() { // Nos podemos criar nossos propios erros na código para fazer mensagens de informação para caso o
+    // usuário tente colocar a informação errada
+    try {
+        val prod = applyDiscount(100.0, 51)
+        println(prod)
+    } catch (e:IllegalArgumentException) {
+        println(e.message) // Isso ira passar a mensagem de erro para o usuário
+    }
+}
+fun applyDiscount(price: Double, value:Int): Double {
+    if (value > 50) {
+        throw IllegalArgumentException("Desconto muito alto!") // Fazendo isso nos idincamos o tipo de erro e indicamos
+    // o motivo de o ter causado
+    }
+    val discount = value * price / 100
+    return price - discount
+}
+class customer(val name:String) {
+    lateinit var MenuDiscount: menuDiscount // Aqui eu estou conectando o usuario a interface, para passar a informação
+
+    fun appScreen() { // Aqui essa funão iria de fato mostrar para o usuario a informação recebida da interface, então
+        // como nesse exemplo mostraria para meu usuário quem é o restaurante que está com o desconto do dia e o seu
+        // cardápio
+        val dayCombo = MenuDiscount.ComboOfTheDay()
+        println(dayCombo)
+    }
+}
+interface menuDiscount { // Vamos criar uma interfaze que ira consersar com as funções internas permitindo que alterações de
+    // variáveis seja mais faceis de ser feitas
+    fun ComboOfTheDay(): String // Vai mostrar os menus com o disconto do dia
+}
+class McDonald : menuDiscount  {
+    override fun ComboOfTheDay(): String{ // Isso vai fazer a class se comunicar com a interface
+        return "Cardápio do McDonald's com desconto do dia"
+    }
+}
+class BK : menuDiscount {
+    override fun ComboOfTheDay(): String{ // Isso vai fazer a class se comunicar com a interface
+        return "Cardápio do Burger King com desconto do dia"
+    }
+}
+class KFC : menuDiscount  {
+    override fun ComboOfTheDay(): String{ // Isso vai fazer a class se comunicar com a interface
+        return "Cardápio do Kentucky Fried Ckicken (KFC) com desconto do dia"
+    }
+}
+class Girafas : menuDiscount  {
+    override fun ComboOfTheDay(): String{ // Isso vai fazer a class se comunicar com a interface
+        return "Cardápio do Girafas com desconto do dia"
     }
 }
