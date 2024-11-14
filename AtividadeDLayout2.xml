@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <!-- Colocando o LinearLayout nos fazemos uma criação de app linear utilizado para facilitar a
+     criação de formulário -->
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:text="Botão 1" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:text="Botão 2"/>
+
+    <!-- A gravity é um jeito de ajustar esses itens na tela -->
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:text="e-mail"/>
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress2"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="Button"
+        tools:text="Avançar" />
+
+    <!-- A Configuração match-parent faz com que o fotão ocupe todo o espaço lateral até a margem -->
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button"
+        tools:text="Botão 3"/>
+
+    <!-- Com o android:layout_weight="1" ele vai fazer com que o botão se ajuste ao espaço faltando
+     da tela isso e cado mais de um item tenha esse comando ele dividem o espaço igualmente-->
+
+</LinearLayout>
