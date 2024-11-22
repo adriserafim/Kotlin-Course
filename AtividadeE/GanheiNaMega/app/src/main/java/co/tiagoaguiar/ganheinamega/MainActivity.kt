@@ -1,5 +1,7 @@
 package co.tiagoaguiar.ganheinamega
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +21,10 @@ class MainActivity : AppCompatActivity() {
     // início a operação do app, como informações onde estão as telas e qual é a tela de início,
     // quais são as informações basicas dessa tela e tambem oferece configurações basicas de funções
     // pré criadas para configurar o app
+
+    private lateinit var prefs: SharedPreferences // Aqui é a parte inicial da criação de um banco
+    // de dados, mas basicamente aqui esta sendo criado uma area para armazenamento de dados
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Essa função on Create é a função interna e obrigatória para o início do projeto. Ela
@@ -32,6 +38,14 @@ class MainActivity : AppCompatActivity() {
         val editText: EditText = findViewById(R.id.edit_number)
         val txtResult: TextView = findViewById(R.id.txt_result)
         val btnGenerate: Button = findViewById(R.id.btn_gererate)
+
+        prefs = getSharedPreferences("db", Context.MODE_PRIVATE) // Aqui você cria um banco
+        // de dados para consutar a informações dos antigos resultados, utilizando aquela areá que
+        // você tinha reservado anteriormente
+        val result = prefs.getString("result_db", null)
+        if (result != null) {
+            txtResult.text = "Ultima aposta : $result"
+        }
 
         // txtResult.text = "Teste" // Isso serve para ver se o campo colocado esta funcionando
         // Para texta o botão existe 3 metodos e o terceito é o mais tilizado e o mais inxuto
@@ -119,5 +133,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
         txtResult.text = numbers.joinToString(" - ")
+
+        val editor = prefs.edit() // Com o .edit nos trocamos o tipo de variável do banco de dados
+        // deixando essa variavel
+        editor.putString("result_db", txtResult.text.toString()) // Aqui nos estamos trocando as
+        // informações do banco
+        editor.apply() // Aqui e de fato a sauvação da informação para banco de dados. Estamos
+        // mudando o tipo denovo da variável, tirarndo do tipo .edit e colocando no
+        // tipo SharedPreferences
+        // LEMBRETE: Presisamos fazer esse tipo de mudança para salvar porque o tipo
+        // SharedPreferences é um tipo de variável imutavel
+        // INFORMAÇÃO ACADÊMICA
+        // Nesse tipo de banco de dados existe dois tipos de salvamento
+        // commit --> Salvar de forma sicrona (BLOQUEA a intercace); Informa se teve sucesso ou não
+        // apply --> Salvar de forma assicrona (NÃO Bloquea a intercace); NÃO informa se teve
+        //           sucesso ou não
+//        val saved = editor.commit() // Testando ara ver se esta Salvando
+//        Log.i("Teste", "Foi salvo : $saved")
     }
 }
