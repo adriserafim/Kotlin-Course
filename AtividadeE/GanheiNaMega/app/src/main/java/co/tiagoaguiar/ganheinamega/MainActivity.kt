@@ -73,30 +73,51 @@ class MainActivity : AppCompatActivity() {
         // Lista de coisas que podem dar errado:
         // 1 - Validar quando o campo é vazio
         // 2 - validar se o camopo informado é entre 6 e 15
-        if (text.isNotEmpty()) {
-            val qtd = text.toInt() // Converte para inteiro
-            if (qtd >= 6 && qtd <= 15) {
-                val numbers = mutableSetOf<Int>()
-                val random = Random()
+//        if (text.isNotEmpty()) {
+//            val qtd = text.toInt() // Converte para inteiro
+//            if (qtd >= 6 && qtd <= 15) { // LEMBRETE: && significa e || significa ou
+//                val numbers = mutableSetOf<Int>()
+//                val random = Random()
+//
+//                while(true) {
+//                    val number = random.nextInt(60)
+//                    numbers.add(number + 1)
+//
+//                    if (numbers.size == qtd) {
+//                        break
+//                    }
+//                }
+//                txtResult.text = numbers.joinToString(" - ")
+//            } else{
+//                Toast.makeText(this, "Informe um número entre 6 a 15",
+//                    Toast.LENGTH_LONG).show()
+//            }
+//        } else { // DICA: Sempre valide as falhas antes de fazer o sucesso
+//            Toast.makeText(this, "Informe um número entre 6 a 15",
+//                Toast.LENGTH_LONG).show() // Isso faz aparecer uma mensagem caso entre nesse else
+//        }
 
-                while(true) {
-                    val number = random.nextInt(60)
-                    numbers.add(number + 1)
-
-                    if (numbers.size == qtd) {
-                        break
-                    }
-                }
-                txtResult.text = numbers.joinToString(" - ")
-            } else{
-                Toast.makeText(this, "Informe um número entre 6 a 15",
-                    Toast.LENGTH_LONG).show()
-            }
-
-        } else { // DICA: Sempre valide as falhas antes de fazer o sucesso
+        // Podemos fazer com que essa função fique em formato mais inxota removendo os else
+        if (text.isEmpty()) {
             Toast.makeText(this, "Informe um número entre 6 a 15",
-                Toast.LENGTH_LONG).show() // Isso faz aparecer uma mensagem caso entre nesse else
-
+                Toast.LENGTH_LONG).show()
+            return
         }
+        val qtd = text.toInt()
+        if (qtd < 6 || qtd > 15) {
+            Toast.makeText(this, "Informe um número entre 6 a 15",
+                Toast.LENGTH_LONG).show()
+            return
+        }
+        val numbers = mutableSetOf<Int>()
+        val random = Random()
+        while(true) {
+            val number = random.nextInt(60)
+            numbers.add(number + 1)
+            if (numbers.size == qtd) {
+                break
+            }
+        }
+        txtResult.text = numbers.joinToString(" - ")
     }
 }
