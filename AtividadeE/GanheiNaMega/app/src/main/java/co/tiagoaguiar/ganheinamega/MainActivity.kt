@@ -42,10 +42,17 @@ class MainActivity : AppCompatActivity() {
         prefs = getSharedPreferences("db", Context.MODE_PRIVATE) // Aqui você cria um banco
         // de dados para consutar a informações dos antigos resultados, utilizando aquela areá que
         // você tinha reservado anteriormente
-        val result = prefs.getString("result_db", null)
-        if (result != null) {
-            txtResult.text = "Ultima aposta : $result"
-        }
+        val result = prefs.getString("result_db", null) // Lembrando que no lugar de
+        // null você pode colocar alguma mensagem e isso ira fazer que quando o valor for null ele
+        // ira mostrar a mensagem
+//        if (result != null) {
+//            txtResult.text = "Ultima aposta : $result"
+//        }
+        // Podemos usar uma outra função no lugar do if podemos utilizar
+        result?.let {
+            txtResult.text = "Ultima aposta : $it" // Isso ira ter o mesmo efeito do if
+        } // É indiferente qual você utiliza porem sempre tente manter um padrão, não utilize
+        // os dois no mesmo código pois isso pode fazer você acabar se confundido na hora de edita-ló ou conferi-ló
 
         // txtResult.text = "Teste" // Isso serve para ver se o campo colocado esta funcionando
         // Para texta o botão existe 3 metodos e o terceito é o mais tilizado e o mais inxuto
@@ -150,5 +157,14 @@ class MainActivity : AppCompatActivity() {
         //           sucesso ou não
 //        val saved = editor.commit() // Testando ara ver se esta Salvando
 //        Log.i("Teste", "Foi salvo : $saved")
+
+        // Para não ter que ficar chamado o comando principal como o editor podemos utilizar o
+        // apply que ira incurtar o chamento para nos
+//        prefs.edit().apply {
+//            putString("result", txtResult.text.toString())
+//            putBoolean("chave", true)
+//            putFloat("chaveX2", 10.0f)
+//            apply()
+//        }
     }
 }
