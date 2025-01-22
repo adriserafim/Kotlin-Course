@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">Fitness Tracker</string>
     <string name="label_imc">IMC</string>
+    <string name="label_tmb">TMB</string>
+    <string name="imc_desc">IMC é a sigla para Índice de Massa Corporal que serve para avaliar o
+        peso do indivíduo em relação à sua altura e assim indicar se está dentro do peso ideal,
+        acima ou abaixo do peso desejado.\n\nPreencha os campos de peso e altura para descobrir o
+        seu IMC</string>
+    <string name="weight">Peso (Kg)</string>
+    <string name="height">Altura (cm)</string>
+    <string name="calc">Calcular</string>
+    <string name="fields_messagens">Todos os campos devem ser maiores que 0 (ZERO)</string>
+    <string name="imc_extreme_low_weight">Caveira</string>
+    <string name="imc_severely_low_weight">Severamente Desnutrido</string>
+    <string name="imc_very_low_weight">Desnutrido</string>
+    <string name="imc_low_weight">Abaixo do peso</string>
+    <string name="imc_normal">Normal</string>
+    <string name="imc_high_weight">Acima do peso</string>
+    <string name="imc_so_high_weight">Obeso</string>
+    <string name="imc_severely_high_weight">Severamente obeso</string>
+    <string name="imc_extreme_high_weight">Extremamente obeso</string>
+
+    <string name="imc_response">Seu IMC é: %1$.2f</string> <!-- Essa parte do %1$.2f permite que o
+     valor que sera usado nesse local seja referido depois deixar os texto da caixas de pop-ups mais
+     dinâmico. %X Coloque a seguencia de casos na texto; $a Tipo de variável -->
+
 </resources>

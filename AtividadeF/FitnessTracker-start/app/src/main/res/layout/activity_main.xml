@@ -8,27 +8,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/btn_imc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorLightGray"
-        android:orientation="vertical"
-        android:paddingStart="12dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="10dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_calculate_24" />
-        <!-- O wrap_content vai fazer com que a imagem fique na dimenção de nos pasarmos -->
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_imc" />
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/main_item"
+        tools:itemCount="25"/>
+    <!-- Com o tools serve para você ter uma vilualização previa de como vai ficar a lista, porem
+    ele não altera códificamente e nem efetua a atrelação dos componentes, literalmente é so para
+    você visualizar como ficaria -->
 
 </LinearLayout>
