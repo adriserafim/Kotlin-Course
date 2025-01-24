@@ -18,7 +18,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvMain: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState) // Inf: para armazenamento de dados pequenos nos podemos
+        // utilizar o savedInstanceState, mas para amazenamentos maiores e para de fato ter um fanco
+        // de dados nos podemos utilizar outras ferramentas, nosso mentor vai ensinar dois metodos
+        // de armazenamento de dados sendo ela uma off-line e outra on-line:
+        //  - Para criar bancos de dados off-line iremos utilizar o método room, que é uma
+        //  biblioteca que faz uma especie de ponte para nos com o amazenamento de dados em SQLite.
+        //  Para criar o banco de dado nos necessitaremos uma estrutura com os seguintes itens:
+        //  1 - Class do Banco de dados;
+        //  2 - Class de Entidades (Local de armazenamento da tabela);
+        //  3 - Class DAO (A class resposavel pela comunicação com o sistema).
         setContentView(R.layout.activity_main)
 
         val mainItems = mutableListOf<MainItem>()
