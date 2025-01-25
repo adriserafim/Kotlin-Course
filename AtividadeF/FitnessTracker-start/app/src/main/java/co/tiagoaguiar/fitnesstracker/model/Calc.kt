@@ -9,8 +9,8 @@ import java.util.*
 data class Calc(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "type") val type: String,
-    @ColumnInfo("res") val res: Double,
-    @ColumnInfo("created-date") val createdDate: Date = Date(),
+    @ColumnInfo(name = "res") val res: Double,
+    @ColumnInfo(name = "created_date") val createdDate: Date = Date(),
 )
 // Com o @Entity eu informo ao kotlin que essa class vai servir com uma class entidades.
 // E depois disso eu posso informar a o kotlin as sua colunas de armazenamento como:

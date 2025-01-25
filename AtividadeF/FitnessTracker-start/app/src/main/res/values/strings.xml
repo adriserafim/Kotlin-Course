@@ -20,7 +20,9 @@
     <string name="imc_severely_high_weight">Severamente obeso</string>
     <string name="imc_extreme_high_weight">Extremamente obeso</string>
 
-    <string name="imc_response">Seu IMC é: %1$.2f</string> <!-- Essa parte do %1$.2f permite que o
+    <string name="imc_response">Seu IMC é: %1$.2f</string>
+    <string name="save">Salvar</string>
+    <string name="saved">Registro salvo com sucesso</string> <!-- Essa parte do %1$.2f permite que o
      valor que sera usado nesse local seja referido depois deixar os texto da caixas de pop-ups mais
      dinâmico. %X Coloque a seguencia de casos na texto; $a Tipo de variável -->
 
