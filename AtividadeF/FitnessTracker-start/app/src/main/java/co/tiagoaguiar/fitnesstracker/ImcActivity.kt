@@ -3,6 +3,7 @@ package co.tiagoaguiar.fitnesstracker
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -68,7 +69,10 @@ class ImcActivity : AppCompatActivity()  {
                         val dao = app.db.calcDao()
                         dao.insert(Calc(type = "imc", res = result))
                         runOnUiThread {
-                            Toast.makeText(this@ImcActivity,R.string.saved, Toast.LENGTH_LONG).show()
+//                            Toast.makeText(this@ImcActivity,R.string.saved, Toast.LENGTH_LONG).show()
+                            val intent = Intent(this@ImcActivity, ListCalcActivity::class.java)
+                            intent.putExtra("type", "imc")
+                            startActivity(intent)
                         }
                     } .start()
                 }
