@@ -1,6 +1,5 @@
 package co.tiagoaguiar.fitnesstracker
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import co.tiagoaguiar.fitnesstracker.model.Calc
+
 
 private lateinit var rvList: RecyclerView
 
@@ -29,7 +28,7 @@ class ListCalcActivity : AppCompatActivity() {
                 ItemList(
                     id = it.id,
                     textStringType = it.type,
-                    textStringDate = it.createdDate.toString(),
+                    textStringDate = it.createdDate,
                     textStringResultCalc = it.res.toString()
                 )
             }
@@ -37,7 +36,7 @@ class ListCalcActivity : AppCompatActivity() {
             runOnUiThread {
                 //Log.i("Teste", "resposta: $response")
                 val reversedItemList = itemList.reversed() // Revertendo a lista
-                val adapter = ListAdapter(itemList)
+                val adapter = ListAdapter(reversedItemList)
                 rvList.adapter = adapter
                 rvList.layoutManager =  LinearLayoutManager(this)
             }
@@ -58,6 +57,22 @@ class ListCalcActivity : AppCompatActivity() {
         override fun getItemCount(): Int {
             return items.size
         }
+
+        // O que o professor fez:
+        // Ele cópiou toda a parte da configuração do arquivo principal e apenas alterou algumas coisas
+        // Logo abaixo vou demostrar a maior alterção
+
+//        private inner class ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+//            fun bind(item:Calc) {
+//                val tv = itemView as TextView
+//
+//                val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR"))
+//                val data = sdf.format(item.createDate)
+//                val res = item.res
+//
+//                tv.text = getString(R.string.list_reponse, res, data)
+//            }
+//        }
     }
 
     private class ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -67,8 +82,8 @@ class ListCalcActivity : AppCompatActivity() {
 
         fun bind(item: ItemList) {
             typeText.text = item.textStringType
-            dateText.text = item.textStringDate
-            resultText.text = item.textStringResultCalc
+            dateText.text = item.getFormattedData()
+            resultText.text = item.textStringResultCalcCut
         }
     }
 }
