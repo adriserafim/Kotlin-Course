@@ -6,6 +6,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.inputmethod.InputMethod
@@ -70,9 +72,7 @@ class ImcActivity : AppCompatActivity()  {
                         dao.insert(Calc(type = "imc", res = result))
                         runOnUiThread {
 //                            Toast.makeText(this@ImcActivity,R.string.saved, Toast.LENGTH_LONG).show()
-                            val intent = Intent(this@ImcActivity, ListCalcActivity::class.java)
-                            intent.putExtra("type", "imc")
-                            startActivity(intent)
+                            openListActicity()
                         }
                     } .start()
                 }
@@ -82,6 +82,24 @@ class ImcActivity : AppCompatActivity()  {
             val service = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             service.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_search) {
+            openListActicity()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun openListActicity() {
+        val intent = Intent(this@ImcActivity, ListCalcActivity::class.java)
+        intent.putExtra("type", "imc")
+        startActivity(intent)
     }
 
     private fun validate(): Boolean{
