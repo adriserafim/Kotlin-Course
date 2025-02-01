@@ -87,7 +87,8 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 2 -> {
-                    // abrir uma outra activity
+                    val intent = Intent(this@MainActivity, TmbActivity::class.java)
+                    startActivity(intent)
                 }
             }
         } // Já para metodo o evento de toque foi chamado totalmente pelo configuração Kotlin
