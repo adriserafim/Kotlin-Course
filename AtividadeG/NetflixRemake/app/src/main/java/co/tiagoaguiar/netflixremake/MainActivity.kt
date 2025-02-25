@@ -2,10 +2,50 @@ package co.tiagoaguiar.netflixremake
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.i("Teste", "onCreate")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("Teste", "onStart")
+        // Essa parte serve para mostrar as coisas quando inicializar uma parte, como pedir
+        // permissões para acessar o GPS, Camera, Galeria, ou outros.
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("Teste", "onResume")
+        // Essa parte é disparada quando o usuario volta para tela do app, com isso o app pode
+        // atualizar as informações, como acontece em app para verificações onde eles utilizam
+        // identificações SMS, quando você volta do app a tela esta liberada
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("Teste", "onPause")
+        // Essa parte trabalha junto com o onResume, ele pasicamente é o proceço anterior ao
+        // onResume, ele pode ser utilizado para salvar as informasoes para ser continuado o
+        // trabalho posteriormente
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("Teste", "onStop")
+        // Essa etapa e a etapa de encerramento do app, normalmente utilizamos essa parte para
+        // livrar recursos, basicamente limpando a bagunça antes de ir embora
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("Teste", "onDestroy")
+        // Essa é a etapa quando o usuário esta encerrando de fato o app, o momento onde o usuario
+        // não tem mais acesso ao app, essa parte é mais usada para coleta de informações do
+        // sistema como coleta para dados de estatiticas ou outros
     }
 }
