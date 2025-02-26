@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.netflixremake.model.Movie
 
 // Aqui nos vamos fazer uma class para o adapter para poder separa mais o código, para organizar
 // melhor e deixar mais facil para edições futuras
-class MainAdapter (private val movies: List<Movie>) : RecyclerView.Adapter<MainAdapter.MovieViewHolder>() {
+class MovieAdapter (private val movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         return  MovieViewHolder(view)
