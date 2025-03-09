@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.netflixremake.model.Category
 import co.tiagoaguiar.netflixremake.model.Movie
+import co.tiagoaguiar.netflixremake.util.CategoryTask
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,20 +16,23 @@ class MainActivity : AppCompatActivity() {
         Log.i("Teste", "onCreate")
 
         val categories = mutableListOf<Category>()
-        for (j in 0 until 10) {
-            val movies = mutableListOf<Movie>()
-            for(i in 0 until 15) {
-                val movie = Movie(R.drawable.movie)
-                movies.add(movie)
-            }
-            val category = Category("cat $j" , movies)
-            categories.add(category)
-        }
+////       Não iremos mais utilizar os dados falsos
+//        for (j in 0 until 10) {
+//            val movies = mutableListOf<Movie>()
+//            for(i in 0 until 15) {
+//                val movie = Movie(R.drawable.movie)
+//                movies.add(movie)
+//            }
+//            val category = Category("cat $j" , movies)
+//            categories.add(category)
+//        }
 
         val adapter = CategoryAdapter(categories)
         val rv: RecyclerView = findViewById(R.id.rv_main)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
+
+        CategoryTask().execute("https://api.tiagoaguiar.co/netflixapp/home?apiKey=ceae331e-de73-4e7c-9619-3e0e586acb7b")
     }
 
     override fun onStart() {
