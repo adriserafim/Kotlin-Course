@@ -1,6 +1,9 @@
 package co.tiagoaguiar.netflixremake.util
 
 import android.util.Log
+import co.tiagoaguiar.netflixremake.model.Category
+import co.tiagoaguiar.netflixremake.model.Movie
+import org.json.JSONObject
 import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -8,6 +11,7 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.Executors
+import javax.net.ssl.HttpsURLConnection
 
 class CategoryTask {
     fun execute(url: String) {
@@ -15,11 +19,13 @@ class CategoryTask {
         val executor = Executors.newSingleThreadExecutor()
 
         executor.execute {
+            var urlConnection: HttpsURLConnection? = null
+            var buffer: BufferedInputStream? = null
+            var stream: InputStream? = null
             try {
                 // Nessa momento, estamos utilizando a NOVA-thread [thread paealela] (2)
                 val requestURL = URL(url) // Abrir uma URl
-                val urlConnection =
-                    requestURL.openConnection() as HttpURLConnection //  Abrir a conexão
+                urlConnection = requestURL.openConnection() as HttpsURLConnection //  Abrir a conexão
                 urlConnection.readTimeout = 2000 // Tempo leitura (2s)
                 urlConnection.connectTimeout = 2000 // Tempo conexão (2s)
                 val statusCode: Int = urlConnection.responseCode
@@ -32,13 +38,21 @@ class CategoryTask {
 //                Log.i("Teste", jsonAsString)
 
                 // Formula 2: Bytes -> String
-                val stream = urlConnection.inputStream // Sequência bytes
-                val buffer = BufferedInputStream(stream)
+                stream = urlConnection.inputStream // Sequência bytes
+                buffer = BufferedInputStream(stream)
                 val jsonAsString = toString(buffer)
-                Log.i("Teste", jsonAsString)
+                // O JSON está preparado para ser convertido em um DATA CLASS!!
+//                Log.i("Teste", jsonAsString
+
+                val categories = toCategories(jsonAsString)
+                Log.i("Teste", categories.toString())
 
             } catch (e: IOException) {
                 Log.e("Teste", e.message ?: "Erro desconhecido", e)
+            } finally {
+                urlConnection?.disconnect()
+                stream?.close()
+                buffer?.close()
             }
         }
     }
@@ -56,5 +70,26 @@ class CategoryTask {
             baos.write(bytes, 0, read)
         }
         return String(baos.toByteArray())
+    }
+
+    private fun toCategories(jsonAsStream: String) : List<Category> {
+        val categories = mutableListOf<Category>()
+        val jsonRoot = JSONObject(jsonAsStream)
+        val jsonCategories = jsonRoot.getJSONArray("category")
+        for (i in 0 until jsonCategories.length()) {
+            val jsonCategory = jsonCategories.getJSONObject(i)
+            val title = jsonCategory.getString("title")
+            val jsonMovies = jsonCategory.getJSONArray("movie")
+
+            val movies = mutableListOf<Movie>()
+            for (j in 0 until jsonMovies.length()) {
+                val jsonMovie = jsonMovies.getJSONObject(j)
+                val id = jsonMovie.getInt("id")
+                val coverUrl = jsonMovie.getString("cover_url")
+                movies.add(Movie(id, coverUrl))
+            }
+            categories.add(Category(title, movies))
+        }
+        return categories
     }
 }
