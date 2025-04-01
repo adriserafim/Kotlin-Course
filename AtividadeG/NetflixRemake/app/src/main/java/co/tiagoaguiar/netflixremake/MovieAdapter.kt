@@ -15,7 +15,8 @@ import com.squareup.picasso.Picasso
 // melhor e deixar mais facil para edições futuras
 class MovieAdapter (
     private val movies: List<Movie>,
-    @LayoutRes private val layoutId: Int
+    @LayoutRes private val layoutId: Int,
+    private val onItemClicklistener: ( (Int) -> Unit )? = null
     ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
@@ -35,6 +36,10 @@ class MovieAdapter (
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
             val imageCover: ImageView = itemView.findViewById(R.id.img_conver)
+
+            imageCover.setOnClickListener {
+                onItemClicklistener?.invoke(movie.id)
+            }
 
             // TODO: Aqui vai ser trocado por uma URL que vira do servidor
             // imageCover.setImageResource(movie.converUrl)
