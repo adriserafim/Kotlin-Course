@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.netflixremake.model.Movie
+import co.tiagoaguiar.netflixremake.model.MovieDetail
+import co.tiagoaguiar.netflixremake.util.MovieTask
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), MovieTask.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
@@ -21,6 +25,10 @@ class MovieActivity : AppCompatActivity() {
         val txtDesc: TextView = findViewById(R.id.movie_txt_desc)
         val txtCast: TextView = findViewById(R.id.movie_txt_cast)
         val rv: RecyclerView = findViewById(R.id.movie_rv_similar)
+
+        val id = intent?.getIntExtra("id", 0) ?: throw IllegalStateException("ID não encontrado!")
+        val url = "https://api.tiagoaguiar.co/netflixapp/movie/$id?apiKey=ceae331e-de73-4e7c-9619-3e0e586acb7b"
+        MovieTask(this).execute(url)
 
         txtTitle.text = "Batman Begins"
         txtDesc.text = "Essa é a descrição do filme do Batman"
@@ -43,14 +51,27 @@ class MovieActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = null
 
-        val layerDrawable: LayerDrawable = ContextCompat.getDrawable(this,
-            R.drawable.shadows) as LayerDrawable // Aqui foi buscado o desenhavel (layer-list)
+        val layerDrawable: LayerDrawable = ContextCompat.getDrawable(
+            this,
+            R.drawable.shadows
+        ) as LayerDrawable // Aqui foi buscado o desenhavel (layer-list)
         val movieCover = ContextCompat.getDrawable(this, R.drawable.movie_4) // Aqui foi
         // buscado o filme que se quer
         // Aqui nessa parte abaixo foi atribuido a esse layer-list o novo filme
         layerDrawable.setDrawableByLayerId(R.id.cover_drawable, movieCover)
         val coverImg: ImageView = findViewById(R.id.movie_img)
         coverImg.setImageDrawable(layerDrawable)
+    }
+
+    override fun onPreExecute() {
+    }
+
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onResult(movieDetail: MovieDetail) {
+        Log.i("Teste", movieDetail.toString())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

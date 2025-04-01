@@ -4,4 +4,10 @@ import androidx.annotation.DrawableRes
 
 // Vamos alterar a coleta de informações de offline para online
 //data class Movie(@DrawableRes val converUrl: Int)
-data class Movie(val id: Int, val converUrl: String)
+data class Movie(
+    val id: Int,
+    val converUrl: String,
+    val title: String = "",
+    val desc: String = "",
+    val cast: String = ""
+)
