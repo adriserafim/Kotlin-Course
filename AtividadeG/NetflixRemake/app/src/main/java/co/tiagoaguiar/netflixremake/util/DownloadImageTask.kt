@@ -16,7 +16,7 @@ class DownloadImageTask(private val callback: Callback) {
     private val executor = Executors.newSingleThreadExecutor()
 
     interface Callback {
-        fun onResult (categories: Bitmap)
+        fun onResult (bitmap: Bitmap)
     }
 
     fun execute(url: String) {

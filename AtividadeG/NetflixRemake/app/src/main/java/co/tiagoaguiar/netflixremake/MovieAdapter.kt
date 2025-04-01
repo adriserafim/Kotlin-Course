@@ -49,7 +49,7 @@ class MovieAdapter (
                 override fun onResult(bitmap: Bitmap) {
                     imageCover.setImageBitmap(bitmap)
                 }
-            }).execute(movie.converUrl)
+            }).execute(movie.coverUrl)
 
             // Utilizando uma biblioteca para isso
 //            Picasso.get()
