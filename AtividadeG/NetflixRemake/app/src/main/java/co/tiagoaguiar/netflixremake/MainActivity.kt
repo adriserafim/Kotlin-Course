@@ -14,6 +14,8 @@ import co.tiagoaguiar.netflixremake.util.CategoryTask
 
 class MainActivity : AppCompatActivity(), CategoryTask.Callback {
     private lateinit var progress: ProgressBar
+    private lateinit var adapter: CategoryAdapter
+    private val categories = mutableListOf<Category>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
 
         progress = findViewById(R.id.progress_main)
 
-        val categories = mutableListOf<Category>()
+//        val categories = mutableListOf<Category>()
 ////       Não iremos mais utilizar os dados falsos
 //        for (j in 0 until 10) {
 //            val movies = mutableListOf<Movie>()
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
 //            categories.add(category)
 //        }
 
-        val adapter = CategoryAdapter(categories)
+        adapter = CategoryAdapter(categories)
         val rv: RecyclerView = findViewById(R.id.rv_main)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
@@ -48,7 +50,10 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
 
     override fun onResult(categories: List<Category>) {
         // Aqui será quando o CategoryTask chamará de volta famoso (callback) - listener
-        Log.i("Teste Categories", categories.toString())
+//        Log.i("Teste Categories", categories.toString())
+        this.categories.clear()
+        this.categories.addAll(categories)
+        adapter.notifyDataSetChanged() // Força o adapter chamar de novo o onBindViewHolder, etc
         progress.visibility = View.GONE
     }
 
