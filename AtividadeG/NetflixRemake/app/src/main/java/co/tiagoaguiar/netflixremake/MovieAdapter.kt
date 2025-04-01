@@ -1,5 +1,6 @@
 package co.tiagoaguiar.netflixremake
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,8 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.netflixremake.model.Movie
+import co.tiagoaguiar.netflixremake.util.DownloadImageTask
+import com.squareup.picasso.Picasso
 
 // Aqui nos vamos fazer uma class para o adapter para poder separa mais o código, para organizar
 // melhor e deixar mais facil para edições futuras
@@ -35,6 +38,21 @@ class MovieAdapter (
 
             // TODO: Aqui vai ser trocado por uma URL que vira do servidor
             // imageCover.setImageResource(movie.converUrl)
+
+            // Fazendo manualmente a importação da URL
+            DownloadImageTask(object : DownloadImageTask.Callback {
+                override fun onResult(bitmap: Bitmap) {
+                    imageCover.setImageBitmap(bitmap)
+                }
+            }).execute(movie.converUrl)
+
+            // Utilizando uma biblioteca para isso
+//            Picasso.get()
+//                .load(movie.converUrl)
+//                .into(imageCover)
+            // Usar bibliotecas já criadas são boas e deixa o código mais enxuto, porem utilizar
+            // elas te prende a pessoas terceiras, que não fazem parte do seu projeto, e isso pode
+            // prejudicar o desenvolvimento dele
         }
     }
 }
