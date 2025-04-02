@@ -13,9 +13,10 @@
             android:id="@+id/toobar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:theme="@style/Theme.JokerAppDev"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.JokerAppDev.PopupOverlay" />
+            android:theme="@style/Theme.JokerAppDev"
+            app:popupTheme="@style/Theme.JokerAppDev.PopupOverlay"
+            app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
