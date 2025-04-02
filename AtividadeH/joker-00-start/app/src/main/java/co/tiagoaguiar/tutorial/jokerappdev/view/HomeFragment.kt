@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.tiagoaguiar.tutorial.jokerappdev.R
+import co.tiagoaguiar.tutorial.jokerappdev.data.CategoryRemoteDataSource
 import co.tiagoaguiar.tutorial.jokerappdev.model.Category
 import co.tiagoaguiar.tutorial.jokerappdev.presentation.HomePresenter
 import com.xwray.groupie.GroupieAdapter
@@ -23,6 +24,8 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        val dataSource = CategoryRemoteDataSource() // Eu não preciso passar essa variavel aqui eu
+//        // posso deixar direto no contrutor
         presenter = HomePresenter(this)
     }
 
@@ -69,3 +72,11 @@ class HomeFragment : Fragment() {
         progressBar.visibility = View.GONE
     }
 }
+
+// Nos vamos passa o formato de organização do arquivos para o modo MVP agora nesse estante estamos
+// no modo MVC.
+// No mundo lá fora nos temos varios outros tipos de organização como:
+// - VIP;
+// - MVVM;
+// - VIPER;
+// E outros...

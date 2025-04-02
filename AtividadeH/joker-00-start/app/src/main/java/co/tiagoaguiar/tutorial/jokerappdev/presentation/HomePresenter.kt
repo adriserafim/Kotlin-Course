@@ -1,19 +1,21 @@
 package co.tiagoaguiar.tutorial.jokerappdev.presentation
 
-import android.os.Handler
-import android.os.Looper
-import android.telecom.CallScreeningService.CallResponse
+import co.tiagoaguiar.tutorial.jokerappdev.data.CategoryRemoteDataSource
+import co.tiagoaguiar.tutorial.jokerappdev.data.ListCategoryCallback
 import co.tiagoaguiar.tutorial.jokerappdev.model.Category
-import co.tiagoaguiar.tutorial.jokerappdev.view.CategoryItem
 import co.tiagoaguiar.tutorial.jokerappdev.view.HomeFragment
 
-class HomePresenter(private val view: HomeFragment) {
+class HomePresenter(
+    private val view: HomeFragment,
+    private val dataSource: CategoryRemoteDataSource = CategoryRemoteDataSource() // Fazendo isso eu
+    // deixo o código mais organizado
+) : ListCategoryCallback {
     fun findAllCategories() {
         view.showProgress()
-        fakeRequest()
+        dataSource.findAllCategories(this)
     }
 
-    fun onSuccess(response: List<String>) {
+    override fun onSuccess(response: List<String>) {
 //        val categories = mutableListOf<CategoryItem>()
 //        for (category in response) {
 //            categories.add(CategoryItem(category))
@@ -30,28 +32,28 @@ class HomePresenter(private val view: HomeFragment) {
         view.showCategories(categories)
     }
 
-    fun onError(message:String) {
-        view.showFailure(message)
+    override fun onError(response: String) {
+        view.showFailure(response)
     }
 
-    fun onComplete() {
+    override fun onComplete() {
         view.hideProgress()
     }
 
     // Essa função tem como objetivo similar uma requisição HTTP
-    private fun fakeRequest() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            val response = arrayListOf(
-                "Categoria 1",
-                "Categoria 2",
-                "Categoria 3",
-                "Categoria 4"
-            )
-            // Aqui a lista falsa já está pronta
-            onSuccess(response)
-            // Lembrete o servidor pode respoder SUCESSO ou FALHA
-//            onError("FALHA NA CONEXÃO. TENTE NOVAMENTE MAIS TARDE")
-            onComplete()
-        }, 2000)
-    }
+//    private fun fakeRequest() {
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            val response = arrayListOf(
+//                "Categoria 1",
+//                "Categoria 2",
+//                "Categoria 3",
+//                "Categoria 4"
+//            )
+//            // Aqui a lista falsa já está pronta
+//            onSuccess(response)
+//            // Lembrete o servidor pode respoder SUCESSO ou FALHA
+////            onError("FALHA NA CONEXÃO. TENTE NOVAMENTE MAIS TARDE")
+//            onComplete()
+//        }, 2000)
+//    }
 }
