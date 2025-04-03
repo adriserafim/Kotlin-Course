@@ -9,9 +9,9 @@ class JokePresenter(
     private val view: JokeFragment,
     private val dataSource: JokeRemoteDataSource = JokeRemoteDataSource()
 ) : JokeCallback {
-    fun findBy(categoryName: String) {
+    fun findRandom(categoryName: String) {
         view.showProgress()
-        dataSource.findBy(categoryName, this)
+        dataSource.findRandom(categoryName, this)
     }
 
     override fun onSuccess(response: Joke) {
