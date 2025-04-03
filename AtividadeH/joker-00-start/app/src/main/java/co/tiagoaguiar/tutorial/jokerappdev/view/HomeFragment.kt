@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,7 +44,9 @@ class HomeFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_main)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        presenter.findAllCategories()
+        if (adapter.itemCount == 0) {
+            presenter.findAllCategories()
+        }
 
 //        val adapter = GroupieAdapter()
         recyclerView.adapter = adapter
@@ -52,6 +55,13 @@ class HomeFragment : Fragment() {
 //        adapter.add(CategoryItem(Category("Categoria 3", 0Xffded36e)))
 //        adapter.add(CategoryItem(Category("Categoria 4", 0Xffcfd571)))
 //        adapter.notifyDataSetChanged()
+
+        adapter.setOnItemClickListener { item, view ->
+            val bundle = Bundle()
+            val categoryName = (item as CategoryItem).category.name
+            bundle.putString(JokeFragment.CATEGORY_KEY, categoryName)
+            findNavController().navigate(R.id.action_nav_home_to_nav_joke, bundle)
+        }
     }
 
     fun showCategories(response: List<Category>) {
