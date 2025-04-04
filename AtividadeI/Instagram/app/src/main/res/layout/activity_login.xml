@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/login_img_logo_height"
                 android:layout_marginBottom="@dimen/login_img_logo_margin_bottom"
-                android:contentDescription="@string/logo_tipo"
+                android:contentDescription="@string/logo_type"
                 android:src="@drawable/instagram_logo_black" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -43,33 +43,32 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_edit_passoword_input"
+                android:id="@+id/login_edit_password_input"
                 style="@style/Theme.Instagram.FormEditTextInput"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/login_edit_passoword"
+                    android:id="@+id/login_edit_password"
                     style="@style/Theme.Instagram.FormEditText"
-                    android:autofillHints="@string/passoword"
-                    android:hint="@string/passoword"
+                    android:autofillHints="@string/password"
+                    android:hint="@string/password"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <co.tiagoaguiar.course.instagram.login.view.LoadingButton
                 android:id="@+id/login_btn_enter"
-                style="@style/Theme.Instagram.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:autofillHints="@string/enter"
-                android:enabled="false"
-                android:text="@string/enter"
-                android:textAllCaps="true" />
+                app:text="@string/enter" />
 
             <FrameLayout
+                style="@style/Theme.Instagram.FormContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <View
-                    style="@style/Theme.Instagram.FormContainer"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_gravity="center"

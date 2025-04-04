@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Instagram</string>
-    <string name="logo_tipo">Logo tipo do Instagram</string>
+    <string name="logo_type">Logo tipo do Instagram</string>
     <string name="email">E-mail</string>
-    <string name="passoword">Senha</string>
+    <string name="password">Senha</string>
     <string name="enter">Entrar</string>
     <string name="or">OU</string>
     <string name="does_not_have_account">Não tem uma conta? <b><font color="#000000">Cadastre-se</font></b></string>
