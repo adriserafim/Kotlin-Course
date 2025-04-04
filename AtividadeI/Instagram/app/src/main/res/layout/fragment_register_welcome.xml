@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="70dp">
+
+            <ImageView
+                android:id="@+id/register_img_logo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/login_img_logo_height"
+                android:layout_marginBottom="@dimen/login_img_logo_margin_bottom"
+                android:contentDescription="@string/logo_type"
+                android:src="@drawable/instagram_logo_black" />
+
+            <TextView
+                android:id="@+id/register_txt_welcome"
+                style="@style/Theme.Instagram.TextViewBase.Form"
+                android:text="@string/welcome_to_instagram" />
+
+            <co.tiagoaguiar.course.instagram.login.view.LoadingButton
+                android:id="@+id/register_name_btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/continuee"
+                app:text="@string/continuee" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/register_txt_terms"
+        style="@style/Theme.Instagram.TextViewBase"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/login_txt_margin"
+        android:layout_marginEnd="@dimen/login_txt_margin"
+        android:autofillHints="@string/agree_terms_policy"
+        android:background="@color/white"
+        android:padding="@dimen/login_txt_padding"
+        android:text="@string/agree_terms_policy"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
