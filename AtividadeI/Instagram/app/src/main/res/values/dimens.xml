@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_img_logo_height">60dp</dimen>
+    <dimen name="login_img_logo_margin_bottom">48dp</dimen>
+    <dimen name="login_txt_or_padding">8dp</dimen>
+    <dimen name="login_txt_padding">24dp</dimen>
+</resources>
