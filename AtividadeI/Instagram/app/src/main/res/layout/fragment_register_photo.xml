@@ -28,26 +28,31 @@
                 android:layout_marginBottom="@dimen/register_photo_spot_margin_bottom"
                 android:contentDescription="@string/register_photo_spot"
                 android:src="@drawable/photo_icon" />
-            
-            <TextView
-                android:textSize="24sp"
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                style="@style/Theme.Instagram.TextViewBase.Form"
-                android:text="@string/photo_register_title"/>
 
             <TextView
-                android:textColor="@color/black"
-                android:layout_gravity="center"
                 style="@style/Theme.Instagram.TextViewBase.Form"
-                android:text="@string/photo_register_subtitle"/>
+                android:layout_gravity="center"
+                android:text="@string/photo_register_title"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                style="@style/Theme.Instagram.TextViewBase.Form"
+                android:layout_gravity="center"
+                android:text="@string/photo_register_subtitle"
+                android:textColor="@color/black" />
 
             <co.tiagoaguiar.course.instagram.login.view.LoadingButton
                 android:id="@+id/register_btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints="@string/next"
-                app:text="@string/next" />
+                android:autofillHints="@string/add_photo"
+                app:text="@string/add_photo" />
+
+            <Button
+                android:id="@+id/register_btn_jump"
+                style="@style/Theme.Instagram.Link"
+                android:text="@string/jump" />
 
         </LinearLayout>
 
