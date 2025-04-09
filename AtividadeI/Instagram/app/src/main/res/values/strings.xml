@@ -46,4 +46,6 @@
     <string name="register_photo_spot">Local para uma foto de perfil</string>
     <string name="favorite">Favorito</string>
     <string name="profile">Perfil</string>
+    <string name="grid">Grid</string>
+    <string name="list">Lista</string>
 </resources>
