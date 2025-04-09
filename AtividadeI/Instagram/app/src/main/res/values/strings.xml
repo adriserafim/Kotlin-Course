@@ -44,4 +44,6 @@
     <string name="logout_action">Sair</string>
     <string name="cancel">Cancel</string>
     <string name="register_photo_spot">Local para uma foto de perfil</string>
+    <string name="favorite">Favorito</string>
+    <string name="profile">Perfil</string>
 </resources>
