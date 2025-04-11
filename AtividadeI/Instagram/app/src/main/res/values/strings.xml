@@ -48,4 +48,6 @@
     <string name="profile">Perfil</string>
     <string name="grid">Grid</string>
     <string name="list">Lista</string>
+    <string name="ic_more">Menu de mais opções</string>
+    <string name="txt_caption">Descrição do Post</string>
 </resources>
