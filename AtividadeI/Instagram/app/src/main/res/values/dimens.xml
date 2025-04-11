@@ -8,4 +8,7 @@
     <dimen name="register_photo_spot_height">150dp</dimen>
     <dimen name="register_photo_spot_width">150dp</dimen>
     <dimen name="register_photo_spot_margin_bottom">48dp</dimen>
+    <dimen name="main_toolbar_logo_width">100dp</dimen>
+    <dimen name="main_toolbar_logo_marginTop">0dp</dimen>
+    <dimen name="main_toolbar_logo_padding">5dp</dimen>
 </resources>
