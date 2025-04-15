@@ -23,4 +23,9 @@
     <dimen name="home_container_user_marginHorizontal">16dp</dimen>
     <dimen name="home_txt_caption_marginHorizontal">8dp</dimen>
     <dimen name="home_txt_caption_paddingHorizontal">8dp</dimen>
+    <dimen name="search_img_user_width">64dp</dimen>
+    <dimen name="search_img_user_height">64dp</dimen>
+    <dimen name="search_paddingHorizontal">16dp</dimen>
+    <dimen name="search_paddingVertical">8dp</dimen>
+    <dimen name="search_txt_marginStart">16dp</dimen>
 </resources>
