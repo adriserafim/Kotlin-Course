@@ -28,4 +28,6 @@
     <dimen name="search_paddingHorizontal">16dp</dimen>
     <dimen name="search_paddingVertical">8dp</dimen>
     <dimen name="search_txt_marginStart">16dp</dimen>
+    <dimen name="camera_img_picture_width">96dp</dimen>
+    <dimen name="camera_img_picture_height">96dp</dimen>
 </resources>
