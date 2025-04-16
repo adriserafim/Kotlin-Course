@@ -11,19 +11,23 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import co.tiagoaguiar.course.instagram.R
 import co.tiagoaguiar.course.instagram.common.view.CustomDialog
+import co.tiagoaguiar.course.instagram.databinding.FragmentRegisterPhotoBinding
 
-class RegisterPhotoFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_register_photo, container,false)
-    }
+class RegisterPhotoFragment : Fragment(R.layout.fragment_register_photo) {
+    private var binding: FragmentRegisterPhotoBinding? = null
+
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        return inflater.inflate(R.layout.fragment_register_photo, container,false)
+//    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentRegisterPhotoBinding.bind(view)
         val customDialog = CustomDialog(requireContext())
         customDialog.setTitle(R.string.app_name) // Aqui nos conseguimos trocar o texto do titulo
         // do customDialog
@@ -47,5 +51,10 @@ class RegisterPhotoFragment : Fragment() {
 //            Log.i("Teste", (it as TextView).text.toString())
 //        }, R.string.photo, R.string.gallery)
         customDialog.show()
+    }
+
+    override fun onDestroy() {
+        binding = null
+        super.onDestroy()
     }
 }
